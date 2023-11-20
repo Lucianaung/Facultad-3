@@ -34,11 +34,11 @@ void loop() {
   delay(25);
 
   if (!rayoActivo) {
-    int intensidad = map(distancia, 200, 100, 0, 255);  //CHEACKEAR LA DISTANCIAS
+    int intensidad = map(distancia, 10, 5, 0, 255);  //CHEACKEAR LA DISTANCIAS
     intensidad = constrain(intensidad, 0, 255);
 
     analogWrite(led, intensidad);
-    if (distancia <= 90) {  //CHECKEAR LA DISTANCIA ACORDE
+    if (distancia <= 4) {  //CHECKEAR LA DISTANCIA ACORDE
       rayoActivo = true;
       tiempoInicioRayo = millis();
     }
