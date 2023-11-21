@@ -17,8 +17,6 @@ void setup() {
   pinMode(led, OUTPUT);
 
   Serial.begin(9600);
-
-  intensidad = 0;
 }
 
 void loop() {
@@ -32,21 +30,24 @@ void loop() {
   duracion = pulseIn(echoPin, HIGH);
   distancia = (duracion * 0.034) / 2;
   delay(25);
+  Serial.println(distancia);
+ 
 
   if (!rayoActivo) {
-    int intensidad = map(distancia, 10, 5, 0, 255);  //CHEACKEAR LA DISTANCIAS
+  int intensidad = map(distancia, 8, 4, 50, 130);  //CHEACKEAR LA DISTANCIAS
     intensidad = constrain(intensidad, 0, 255);
+    analogWrite(led,intensidad);
 
-    analogWrite(led, intensidad);
-    if (distancia <= 4) {  //CHECKEAR LA DISTANCIA ACORDE
+   
+  } 
+   if (distancia <= 4) {  //CHECKEAR LA DISTANCIA ACORDE
       rayoActivo = true;
       tiempoInicioRayo = millis();
-    }
-  } else {
-    long tiempoActual = millis();
+  long tiempoActual = millis();
+  
     if (tiempoActual - tiempoInicioRayo <= duracionRayo) {
-      analogWrite(led, intensidad( random (0, 255));
+      analogWrite(led, (random (0, 255)));
       delay(random(5,15));
-    }
-  }
+    }
+  }
 }
